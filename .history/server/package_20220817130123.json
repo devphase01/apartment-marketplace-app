@@ -1,0 +1,16 @@
+{
+  "name": "apartment-server",
+  "version": "1.0.0",
+  "description": "Marketplace Apartment API",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "author": "Voznyi",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^3.3.7",
+    "express": "^4.18.1",
+    "mongoose": "^6.5.2"
+  }
+}
