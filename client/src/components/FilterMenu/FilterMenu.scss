@@ -1,0 +1,9 @@
+@use '../../scss/index' as *;
+
+.filter-menu {
+  background-color: $blue-color;
+
+  &__container {
+    padding: 30px 10px;
+  }
+}

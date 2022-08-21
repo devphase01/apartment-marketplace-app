@@ -1,0 +1,11 @@
+
+.cards {
+  margin: 1.5rem 0;
+
+  &__container {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    row-gap: 2rem;
+  }
+}

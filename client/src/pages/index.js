@@ -1,2 +1,2 @@
 export { default as Home } from './Home/Home';
-export { default as Appartment } from './Appartment/Appartment';
+export { default as Apartment } from './Apartment/Apartment';

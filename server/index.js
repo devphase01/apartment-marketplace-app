@@ -2,12 +2,14 @@ const express = require("express");
 const mongoose = require("mongoose");
 const config = require("config");
 const apartmentRouter = require("./routes/apartment.routes");
+const corsMiddleware = require("./middleware/cors.middleware");
 
 const app = express();
 const PORT = config.get("serverPORT");
 
+app.use(corsMiddleware);
 app.use(express.json());
-app.use("/api/appartments", apartmentRouter);
+app.use("/api/apartments", apartmentRouter);
 
 const start = async () => {
   try {

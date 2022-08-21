@@ -1,0 +1,15 @@
+@use '../../scss/index' as *;
+
+.sort-menu {
+  width: 100%;
+  background-color: $light-blue-color;
+
+  &__container {
+    padding: 20px 10px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 2rem;
+  }
+}
