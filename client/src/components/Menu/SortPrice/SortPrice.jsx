@@ -1,4 +1,4 @@
-import './Select.scss';
+import './SortPrice.scss';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
@@ -10,7 +10,7 @@ import { setPriceSort, setPriceText } from '../../../app/reducers/general';
 
 const currentSection = "sortByPrice";
 
-const Select = () => {
+const SortPrice = () => {
   const dispatch = useDispatch();
   const { activeSection } = useSelector(state => state.sectionObserver);
   const { roomsFilter, priceText } = useSelector(state => state.general);
@@ -24,7 +24,7 @@ const Select = () => {
     const text = element.textContent;
 
     setIsSelect(false);
-    document.querySelector(".select__icon").classList.remove("active");
+    document.querySelector(".sort-price__icon").classList.remove("active");
     
     // ACTION TO SERVER
     dispatch(getApartments({ price: type, rooms: roomsFilter }));
@@ -35,26 +35,26 @@ const Select = () => {
   useEffect(() => {
     if(activeSection !== currentSection) {
       setIsSelect(false);
-      document.querySelector(".select__icon").classList.remove("active");
+      document.querySelector(".sort-price__icon").classList.remove("active");
     }
   }, [activeSection]);
 
   return (
-    <div className="select">
+    <div className="sort-price">
 
-      <div className="select__text" onClick={(e) => {
+      <div className="sort-price__text" onClick={(e) => {
         e.stopPropagation();
         setIsSelect(prev => !prev);
         dispatch(setSection(currentSection));
 
-        document.querySelector(".select__icon").classList.toggle("active");
+        document.querySelector(".sort-price__icon").classList.toggle("active");
       }}>
         <span>Сортування цін: <span>{priceText}</span></span>
-        <MdOutlineKeyboardArrowDown className="select__icon"/>
+        <MdOutlineKeyboardArrowDown className="sort-price__icon"/>
       </div>
 
       {isSelect && activeSection === currentSection && (
-        <div className="select__options">
+        <div className="sort-price__options">
           <div onClick={(e) => handleSelect(e, e.target)} data-type="default">Стандартне</div>
           <div onClick={(e) => handleSelect(e, e.target)} data-type="asc">По зростанню</div>
           <div onClick={(e) => handleSelect(e, e.target)} data-type="desc">По спаданню</div>
@@ -65,4 +65,4 @@ const Select = () => {
   )
 }
 
-export default Select
+export default SortPrice

@@ -1,12 +1,12 @@
 import './Home.scss';
 
-import { Header, SortMenu, CardContainer,  } from '../../components';
+import { Header, Menu, CardContainer,  } from '../../components';
 
 const Home = () => {
   return (
     <div className="home">
       <Header />
-      <SortMenu />
+      <Menu />
       <CardContainer />
     </div>
   )

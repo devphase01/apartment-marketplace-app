@@ -1,12 +1,12 @@
 import FilterRooms from './FilterRooms/FilterRooms';
-import Select from './Select/Select';
-import './SortMenu.scss';
+import SortPrice from './SortPrice/SortPrice';
+import './Menu.scss';
 
 const SortMenu = () => {
   return (
     <div className="sort-menu">
       <div className="sort-menu__container container">
-        <Select />
+        <SortPrice />
         <FilterRooms />
       </div>
     </div>
