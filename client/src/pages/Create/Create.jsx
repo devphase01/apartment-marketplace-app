@@ -7,8 +7,8 @@ import { useDispatch } from 'react-redux';
 
 import isValidForm from '../../utils/isValidForm';
 import { createApartment } from '../../app/actions/Apartment';
-import { useNavigate } from 'react-router-dom';
-import { isFulfilled } from '@reduxjs/toolkit';
+import { Link, useNavigate } from 'react-router-dom';
+import { AiOutlineArrowRight } from 'react-icons/ai';
 
 const Create = () => {
 
@@ -25,7 +25,7 @@ const Create = () => {
   const handleChange = (event) => {
     setAnnouncement(prev => ({ ...prev, [event.target.name]: event.target.value }));
 
-    if(event.target.name === "description") {
+    if (event.target.name === "description") {
       let descriptionLength = event.target.value.length;
       const descriptionLengthElement = document.querySelector(".create__description-length");
 
@@ -33,7 +33,7 @@ const Create = () => {
       descriptionLengthElement.classList.remove("danger");
       descriptionLengthElement.classList.remove("error");
 
-      if(descriptionLength > 0 && descriptionLength < 70) {
+      if (descriptionLength > 0 && descriptionLength < 70) {
         descriptionLengthElement.classList.add("normal");
       } else if (descriptionLength >= 70 && descriptionLength < 100) {
         descriptionLengthElement.classList.add("danger");
@@ -53,8 +53,8 @@ const Create = () => {
       const errorTarget = isValid.element;
       let errorBlock;
 
-      if(errorTarget !== "description") {
-       errorBlock = document.querySelector(`.create__card-block > input[name="${errorTarget}"]`).parentElement;
+      if (errorTarget !== "description") {
+        errorBlock = document.querySelector(`.create__card-block > input[name="${errorTarget}"]`).parentElement;
       } else {
         errorBlock = document.querySelector(`.create__card-block > textarea[name="${errorTarget}"]`).parentElement;
       }
@@ -71,9 +71,12 @@ const Create = () => {
   return (
     <div className="create">
       <div className="create__container container">
-        <h1 className="create__title">
-          Додати оголошення
-        </h1>
+        <div className="create__header">
+          <h1 className="create__title">
+            Додати оголошення
+          </h1>
+
+        </div>
         <div className="create__card">
           <div className="create__image">
             <BsImageFill className="create__image-icon" />

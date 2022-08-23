@@ -18,7 +18,7 @@ const Card = ({ announcement }) => {
           <div className="card__rooms">{ announcement.rooms } кімнат</div>
           <p className="card__description">
             {announcement.description.length > 140 
-            ? `${announcement.description.slice(0, 140)}...`
+            ? `${announcement.description.slice(0, 60)}...`
             : `${announcement.description}`}
           </p>
         </div>

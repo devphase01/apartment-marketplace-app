@@ -1,7 +1,14 @@
 @use "../../scss/index" as *;
 
 .create {
-  margin-top: 60px;
+  margin-top: calc(2rem + 60px);
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 3rem;
+  }
 
   &__title {
     font-size: 32px;
@@ -11,8 +18,6 @@
     display: inline-block;
 
     padding-bottom: 5px;
-
-    margin: 2rem 0 3rem 0;
 
     &::after {
       content: "";
@@ -173,6 +178,7 @@
   @media screen and (max-width: $laptop) {
     &__card {
       flex-direction: column;
+      height: 100%;
     }
 
     &__content {

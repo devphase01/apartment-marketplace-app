@@ -11,9 +11,7 @@ class ApartmentController {
       const sortByPrice = price;
       const filterByRooms = rooms ? parseInt(rooms, 10) : undefined;
 
-      const totalApartments = await ApartmentModel.countDocuments();
-
-      if(totalApartments === 0) {
+      if(await ApartmentModel.countDocuments() === 0) {
         await ApartmentModel.insertMany([
           {
             name: "Чорновола В. просп., 16C",
@@ -48,6 +46,8 @@ class ApartmentController {
 
       if (filterByRooms && filterByRooms !== 4) apartments = apartments.filter(apartment => apartment.rooms === filterByRooms);
       else if(filterByRooms && filterByRooms === 4) apartments = apartments.filter(apartment => apartment.rooms >= filterByRooms);
+
+      const totalApartments = await ApartmentModel.countDocuments();
 
       return res.json({
         totalApartments,
