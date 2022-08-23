@@ -1,6 +1,6 @@
 # apartment-marketplace-app
 
-# Installation 
+# How to start?
 <ul>
   <li>Clone repository</li>
   <li>Install <code>node_modules</code> in client and server folders</li>
