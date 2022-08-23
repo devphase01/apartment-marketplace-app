@@ -1,11 +1,21 @@
+@use '../../scss/index' as *;
 
 .cards {
-  margin: 1.5rem 0;
+  padding: 1.5rem 0;
 
   &__container {
     display: grid;
     grid-template-columns: 1fr;
 
     row-gap: 2rem;
+  }
+
+  @media screen and (max-width: $mobile) {
+    flex-direction: column;
+    height: auto;
+
+    .cards__container {
+      row-gap: 2rem;
+    }
   }
 }

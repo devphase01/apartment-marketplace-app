@@ -15,14 +15,15 @@ const Card = ({ announcement }) => {
         <div className="card-content-block">
           <div className="card__price">{ announcement.price } грн</div>
           <div className="card__title">{ announcement.name }</div>
-          <div className="card__location">Lviv</div>
           <div className="card__rooms">{ announcement.rooms } кімнат</div>
           <p className="card__description">
-            {announcement.description.length > 140 ? announcement.description.slice(0, 140) + "..." : announcement.description}
+            {announcement.description.length > 140 
+            ? `${announcement.description.slice(0, 140)}...`
+            : `${announcement.description}`}
           </p>
         </div>
 
-        <Link to={`/apartment/${announcement._id}`} className="card__read-more">
+        <Link to={`/apartment/${announcement._id ? announcement._id : announcement.id}`} className="card__read-more">
           <AiOutlineArrowRight />
           <span>Read More</span>
         </Link>

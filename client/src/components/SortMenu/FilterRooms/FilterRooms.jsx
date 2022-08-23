@@ -12,12 +12,12 @@ const currentSection = "filterByRoom";
 
 const FilterRooms = () => {
   const dispatch = useDispatch();
+  const { priceSort, roomsFilter } = useSelector(state => state.general);
+  const { activeSection } = useSelector(state => state.sectionObserver);
 
   const [isOpen, setIsOpen] = useState(false);
-  const [filterByRooms, setFilterByRooms] = useState(null);
+  const [filterByRooms, setFilterByRooms] = useState(roomsFilter);
 
-  const { activeSection } = useSelector(state => state.sectionObserver);
-  const { priceSort } = useSelector(state => state.general);
 
   const handleSubmit = (event) => {
     event.stopPropagation();

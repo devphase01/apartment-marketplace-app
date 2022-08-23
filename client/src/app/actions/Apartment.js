@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { addApartment, removeApartment, setApartments, setLoading, setTotalApartments } from '../reducers/apartmentReducer';
+import { addApartment, removeApartment, setApartments, setTotalApartments, setApartment, setEditingMode } from '../reducers/apartmentReducer';
+import { setLoading } from '../reducers/general';
 
 const URL = "http://localhost:7000/api/apartments";
 
@@ -19,7 +20,24 @@ export const getApartments = (params) => {
       dispatch(setTotalApartments(response.data.totalApartments));
 
     } catch (e) {
-      console.log(e);
+      console.log(e.message);
+    } finally {
+      dispatch(setLoading(false));
+    }
+  }
+}
+export const getApartment = (id) => {
+  return async dispatch => {
+    try {
+      let url = "http://localhost:7000/api/apartments/apartment?id=" + id;
+      dispatch(setLoading(true));
+
+      const response = await axios.get(url);
+
+      dispatch(setApartment(response.data));
+
+    } catch (e) {
+      console.log(e.message);
     } finally {
       dispatch(setLoading(false));
     }
@@ -48,15 +66,39 @@ export const createApartment = (apartment) => {
   }
 }
 
-export const deleteApartment = (apartment) => {
+export const deleteApartment = (id) => {
   return async dispatch => {
     try {
-      await axios.delete(`${URL}/apartment?id=${apartment._id}`);
-      dispatch(removeApartment(apartment._id));
+      dispatch(setLoading(true));
+      await axios.delete(`${URL}/apartment?id=${id}`);
+      dispatch(removeApartment(id));
 
     } catch (e) {
       console.log(e);
     } finally {
+      dispatch(setLoading(false));
+      dispatch(setEditingMode(false))
+    }
+  }
+}
+
+export const updateApartment = (apartment) => {
+  return async dispatch => {
+    try {
+      dispatch(setLoading(true));
+      const response = await axios.put(`${URL}/apartment?id=${apartment.id}`, {
+        name: apartment.name,
+        price: apartment.price,
+        rooms: apartment.rooms,
+        description: apartment.description,
+      });
+
+      dispatch(setApartment(response.data));
+    } catch(e) {
+      console.log(e);
+    } finally {
+      dispatch(setLoading(false));
+      dispatch(setEditingMode(false))
     }
   }
 }

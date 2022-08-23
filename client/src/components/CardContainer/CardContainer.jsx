@@ -15,7 +15,7 @@ const CardContainer = () => {
     dispatch(getApartments({ price: priceSort, rooms: roomsFilter }));
   }, [dispatch, priceSort, roomsFilter]);
 
-  if(isLoading) return <Loader />
+  if(isLoading) return <div className="loader"><Loader /></div>
 
   return (
     <div className="cards">

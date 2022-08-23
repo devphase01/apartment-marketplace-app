@@ -4,7 +4,7 @@
   display: inline-block;
 
   position: relative;
-  z-index: 10;
+  z-index: 11;
 
   &__text {
     display: flex;
@@ -67,6 +67,16 @@
     transition: transform 300ms ease;
     &.active {
       transform: rotate(180deg);
+    }
+  }
+
+  @media screen and (max-width: $xs) {
+    &__text {
+      span {
+        span {
+          display: none;
+        }
+      }
     }
   }
 }

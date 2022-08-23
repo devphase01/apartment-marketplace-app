@@ -1,48 +1,42 @@
-@use "../../../scss/_index.scss" as *;
+@use "../../../scss/index" as *;
 
-.card {
+.apartment {
   display: flex;
+  flex-direction: column;
 
-  height: 300px;
+  gap: 1rem;
 
-  box-shadow: 0px 0px 20px rgba(168, 168, 168, 0.29);
-  border-radius: 20px;
+  width: 100%;
+  height: 100%;
 
   &__image {
     flex: 0 0 40%;
-    overflow: hidden;
-    border-radius: 10px 0 0 10px;
-
     position: relative;
+    min-height: 400px;
 
-    min-height: 300px;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
 
     img {
       width: 100%;
       height: 100%;
-
       object-fit: cover;
 
       position: absolute;
       top: 0;
       left: 0;
-
-      transform: scale(1);
-
-      transition: transform 300ms ease;
     }
 
-    &:hover {
-      img {
-        transform: scale(1.05);
-      }
+    transition: min-height 300ms ease;
 
+    &:hover {
+      min-height: 500px;
       cursor: pointer;
     }
   }
 
   &__content {
-    flex: 1;
+    flex: 60%;
 
     display: flex;
     flex-direction: column;
@@ -51,6 +45,8 @@
     line-height: 2;
 
     padding: 1rem;
+
+    position: relative;
 
     &:hover {
       cursor: default;
@@ -85,21 +81,30 @@
     color: gray;
   }
 
-  &__read-more {
-    display: flex;
-    align-items: center;
+  &__edit {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__back {
     align-self: flex-end;
 
+    display: flex;
+    align-items: center;
+
     color: $blue-color;
+    font-weight: 500;
 
-    font-size: 18px;
-    text-decoration: none;
-
-    position: relative;
-
-    transition: color 200ms linear;
+    transition: color 300ms ease;
 
     padding-bottom: 3px;
+
+    position: relative;
 
     &::before {
       content: "";
@@ -118,33 +123,21 @@
       transition: transform 300ms ease;
     }
 
+    span {
+      margin-left: 5px;
+    }
+
     &:hover {
+      cursor: pointer;
       color: $orange-color;
 
       &::before {
         transform: scaleX(1);
       }
     }
-
-    span {
-      margin-left: 5px;
-    }
   }
 
   @media screen and (max-width: $tablet) {
     flex-direction: column;
-    height: 100%;
-    gap: 0;
-
-    .card__content {
-      justify-content: flex-start;
-    }
-
-    .card__image {
-      overflow: hidden;
-      max-height: 350px;
-
-      border-radius: 10px 10px 0 0;
-    }
   }
 }

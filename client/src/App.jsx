@@ -1,20 +1,22 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.scss';
-import { Header } from './components';
-import { Home, Apartment } from './pages';
+import { Navbar } from './components';
+import { Home, Details, Create } from './pages';
 
 import { setSection } from './app/reducers/sectionObserver';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const App = () => {
   const dispatch = useDispatch();
+  const { isEditing } = useSelector(state => state.apartments);
   return (
-    <div className="app" onClick={() => dispatch(setSection(null))}>
-      <Header />
+    <div className={`app ${isEditing ? "editing" : ""}`} onClick={() => dispatch(setSection(null))}>
+      <Navbar />
 
       <Routes>
         <Route path="/" element={<Home />}/>
-        <Route path="/apartment/:id" element={<Apartment />} />
+        <Route path="/create" element={<Create />} />
+        <Route path="/apartment/:id" element={<Details />} />
       </Routes>
 
     </div>

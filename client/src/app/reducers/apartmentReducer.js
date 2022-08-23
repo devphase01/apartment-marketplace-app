@@ -3,9 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   apartments: [],
   apartment: null,
-  isLoading: false,
-  isPopup: false,
-  totalApartments: 0
+  totalApartments: 0,
+  isEditing: false,
 }
 
 const apartmentSlice = createSlice({
@@ -14,6 +13,10 @@ const apartmentSlice = createSlice({
   reducers: {
     setApartments(state, action) {
       state.apartments = action.payload;
+    },
+
+    setApartment(state, action) {
+      state.apartment = action.payload;
     },
 
     addApartment(state, action) {
@@ -30,20 +33,19 @@ const apartmentSlice = createSlice({
       state.totalAnnouncement -= 1; 
     },
 
-    setLoading(state, action) { state.isLoading = action.payload },
+    setEditingMode(state, action) {
+      state.isEditing = action.payload;
+    }
 
-    showPopup(state) { state.isPopup = true },
-    hidePopup(state) { state.isPopup = false },
   },
 });
 
 export default apartmentSlice.reducer;
 export const {
-  setApartments, 
-  setLoading, 
+  setApartments,
+  setApartment, 
   setTotalApartments,
+  setEditingMode,
   addApartment, 
   removeApartment,
-  hidePopup, 
-  showPopup
 } = apartmentSlice.actions;

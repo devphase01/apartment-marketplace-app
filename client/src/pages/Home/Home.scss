@@ -1,0 +1,9 @@
+@use '../../scss/index' as *;
+
+.home {
+  margin-top: 60px;
+
+  @media screen and (max-width: $tablet) {
+    margin-top: 52px;
+  }
+}

@@ -13,9 +13,8 @@ const currentSection = "sortByPrice";
 const Select = () => {
   const dispatch = useDispatch();
   const { activeSection } = useSelector(state => state.sectionObserver);
-  const { roomsFilter, priceText, priceSort } = useSelector(state => state.general);
+  const { roomsFilter, priceText } = useSelector(state => state.general);
   
-  const [sortByPrice, setSortByPrice] = useState({ text: "Стандартне", type: null });
   const [isSelect, setIsSelect] = useState(false);
 
   const handleSelect = (event, element) => {
@@ -25,7 +24,6 @@ const Select = () => {
     const text = element.textContent;
 
     setIsSelect(false);
-    setSortByPrice({ type, text });
     document.querySelector(".select__icon").classList.remove("active");
     
     // ACTION TO SERVER
@@ -51,15 +49,15 @@ const Select = () => {
 
         document.querySelector(".select__icon").classList.toggle("active");
       }}>
-        <span>Сортування цін: {priceText}</span>
+        <span>Сортування цін: <span>{priceText}</span></span>
         <MdOutlineKeyboardArrowDown className="select__icon"/>
       </div>
 
       {isSelect && activeSection === currentSection && (
         <div className="select__options">
           <div onClick={(e) => handleSelect(e, e.target)} data-type="default">Стандартне</div>
-          <div onClick={(e) => handleSelect(e, e.target)} data-type="asc">Знизу вверх</div>
-          <div onClick={(e) => handleSelect(e, e.target)} data-type="desc">Зверху вниз</div>
+          <div onClick={(e) => handleSelect(e, e.target)} data-type="asc">По зростанню</div>
+          <div onClick={(e) => handleSelect(e, e.target)} data-type="desc">По спаданню</div>
         </div>
       )}
 

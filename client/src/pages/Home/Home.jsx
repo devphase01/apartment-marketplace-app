@@ -1,11 +1,11 @@
 import './Home.scss';
 
-import { FilterMenu, SortMenu, CardContainer,  } from '../../components';
+import { Header, SortMenu, CardContainer,  } from '../../components';
 
 const Home = () => {
   return (
-    <div className="home-page">
-      <FilterMenu />
+    <div className="home">
+      <Header />
       <SortMenu />
       <CardContainer />
     </div>
