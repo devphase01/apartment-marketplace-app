@@ -8,3 +8,8 @@
   <li>Run Client: <code>npm start</code></li>
   <li>Enjoy <code>!important</code>
  </ul>
+
+# Additional
+
+To reset filter, just press "Застосувати фільтр" without extra filters. <br />
+![image](https://user-images.githubusercontent.com/87848253/186217919-7a2a9748-a79a-4fe1-bd7f-383b6b1b5fea.png)
