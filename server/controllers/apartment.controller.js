@@ -11,14 +11,43 @@ class ApartmentController {
       const sortByPrice = price;
       const filterByRooms = rooms ? parseInt(rooms, 10) : undefined;
 
+      const totalApartments = await ApartmentModel.countDocuments();
+
+      if(totalApartments === 0) {
+        await ApartmentModel.insertMany([
+          {
+            name: "Чорновола В. просп., 16C",
+            price: 27300,
+            rooms: 2,
+            description: `Загальна площа: 75 кв.м Поверх: 6 Поверховість: 9 Балконів: 1`
+          },
+          {
+            name: "Замарстинівська вул., 153",
+            price: 17000,
+            rooms: 1,
+            description: "Загальна площа: 40 кв.м Поверх: 2 Поверховість: 5 Балконів: 1"
+          },
+          {
+            name: "Кульпарківська вул., 13B",
+            price: 19700,
+            rooms: 2,
+            description: "Загальна площа: 44 кв.м Поверх: 1 Поверховість: 5 Балконів: 1"
+          },
+          {
+            name: "Стрийська вул., 193",
+            price: 31100,
+            rooms: 2,
+            description: "Загальна площа: 78 кв.м Поверх: 6 Поверховість: 9 Балконів: 2"
+          },
+        ]);
+      }
+
       if (sortByPrice === "asc") apartments = await ApartmentModel.find().sort({ price: 1 });
       else if (sortByPrice === "desc") apartments = await ApartmentModel.find().sort({ price: -1 });
       else apartments = await ApartmentModel.find();
 
       if (filterByRooms && filterByRooms !== 4) apartments = apartments.filter(apartment => apartment.rooms === filterByRooms);
       else if(filterByRooms && filterByRooms === 4) apartments = apartments.filter(apartment => apartment.rooms >= filterByRooms);
-
-      const totalApartments = await ApartmentModel.count();
 
       return res.json({
         totalApartments,
@@ -40,7 +69,7 @@ class ApartmentController {
 
       if(!apartment) return res.status(400).json({ message: "Apartment is not exists" });
 
-      return json(apartment);
+      return res.json(apartment);
 
     } catch (e) {
       console.log('====================================');
@@ -113,7 +142,7 @@ class ApartmentController {
       if (!isValid.status) return res.status(400).json({ message: isValid.message });
 
       await ApartmentModel.updateOne(apartment, { name, price, rooms, description });
-      return res.json({ message: "Apartment was successfuly updated!" });
+      return res.json({ name, price, rooms, description, _id: id });
 
     } catch (e) {
       console.log('====================================');
