@@ -7,11 +7,14 @@ import { Link } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 import { setEditingMode } from '../../../app/reducers/apartmentReducer';
+import { Error } from '../../../pages';
 
 const Apartment = ({ data }) => {
   const dispatch = useDispatch();
+
   if (!data) return <div>No apartment found.</div>
 
+  if(data.error) return <Error/>
   return (
     <div className="apartment">
       <div className="apartment__image">

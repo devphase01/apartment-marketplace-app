@@ -37,7 +37,7 @@ export const getApartment = (id) => {
       dispatch(setApartment(response.data));
 
     } catch (e) {
-      console.log(e.message);
+      dispatch(setApartment({ error: "Not found"}));
     } finally {
       dispatch(setLoading(false));
     }
