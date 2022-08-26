@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { formatSuggestions } from '../../utils/formatter';
 import './Header.scss';
 
 const Header = () => {
@@ -12,7 +13,7 @@ const Header = () => {
           </h2>
 
           <span className="header__total-announcements">
-            {totalApartments} пропозицій
+            {formatSuggestions(totalApartments)}
           </span>
         </div>
 

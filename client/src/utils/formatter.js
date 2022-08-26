@@ -25,3 +25,19 @@ export const formatRooms = (rooms) => {
     return `${rooms} кіманти`
   }
 }
+
+export const formatSuggestions = (suggestions) => {
+  const stringVersion = String(suggestions);
+
+  if(["5", "6", "7", "8", "9"].includes(stringVersion.slice(-1)) || suggestions % 10 === 0 || suggestions === 11) {
+    return `${suggestions} пропозицій`
+  } 
+
+  if(stringVersion.slice(-1) === "1") {
+    return `${suggestions} пропозиція`
+  }
+
+  if(["2", "3", "4"].includes(stringVersion.slice(-1))) {
+    return `${suggestions} пропозиції`
+  }
+}
