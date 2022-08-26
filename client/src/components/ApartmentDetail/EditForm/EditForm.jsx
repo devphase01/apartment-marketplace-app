@@ -42,6 +42,7 @@ const ApartmentEdit = ({ data }) => {
 
       errorBlock.classList.add("error");
     } else {
+      console.log(apartment.description);
       dispatch(updateApartment(apartment));
     }
   }

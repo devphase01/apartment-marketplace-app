@@ -82,7 +82,14 @@
   &__description {
     font-weight: 400;
 
-    color: gray;
+    span {
+      font-weight: 500;
+    }
+
+    p {
+      line-height: 1.3;
+      color: gray;
+    }
   }
 
   &__read-more {
@@ -149,11 +156,14 @@
   }
 
   @media screen and (max-width: $mobile) {
-    &__title, &__price, &__read-more {
+    &__title,
+    &__price,
+    &__read-more {
       font-size: 14px;
     }
 
-    &__rooms, &__description {
+    &__rooms,
+    &__description {
       font-size: 12px;
     }
   }

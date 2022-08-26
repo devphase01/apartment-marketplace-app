@@ -16,6 +16,7 @@ const Apartment = ({ data }) => {
   if (!data) return <div>No apartment found.</div>
 
   if(data.error) return <Error/>
+  console.log(data.description);
   return (
     <div className="apartment">
       <div className="apartment__image">
@@ -27,9 +28,9 @@ const Apartment = ({ data }) => {
           <div className="apartment__title">{data.name}</div>
           <div className="apartment__price">{formatPrice(data.price)} грн</div>
           <div className="apartment__rooms">{formatRooms(data.rooms)}</div>
-          <div className="apartment__description">
+          <div className="apartment__description multiline">
             <span>Опис: </span> <br />
-            <p>{data.description}</p>
+            <p>{`${data.description}`}</p>
           </div>
         </div>
 

@@ -81,7 +81,14 @@
   &__description {
     font-weight: 400;
 
-    color: gray;
+    span {
+      font-weight: 500;
+    }
+
+    p {
+      line-height: 1.3;
+      color: gray;
+    }
   }
 
   &__edit {
@@ -145,11 +152,14 @@
   }
 
   @media screen and (max-width: $mobile) {
-    &__title, &__price, &__back {
+    &__title,
+    &__price,
+    &__back {
       font-size: 14px;
     }
 
-    &__rooms, &__description {
+    &__rooms,
+    &__description {
       font-size: 12px;
     }
   }
