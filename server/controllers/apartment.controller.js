@@ -63,7 +63,7 @@ class ApartmentController {
 
   async getApartment(req, res) {
     try {
-      const { id } = req.query;
+      const id = req.params.id;
 
       const apartment = await ApartmentModel.findOne({ _id: id });
 
@@ -112,7 +112,7 @@ class ApartmentController {
 
   async deleteApartment(req, res) {
     try {
-      const { id } = req.query;
+      const id = req.params.id;
 
       const apartment = await ApartmentModel.findOne({_id: id});
 
@@ -132,7 +132,7 @@ class ApartmentController {
   async updateApartment(req, res) {
     try {
       const { name, price, rooms, description } = req.body;
-      const { id } = req.query;
+      const id = req.params.id;
 
       const apartment = await ApartmentModel.findOne({ _id: id });
 

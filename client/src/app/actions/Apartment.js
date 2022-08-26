@@ -29,10 +29,9 @@ export const getApartments = (params) => {
 export const getApartment = (id) => {
   return async dispatch => {
     try {
-      let url = "http://localhost:7000/api/apartments/apartment?id=" + id;
       dispatch(setLoading(true));
 
-      const response = await axios.get(url);
+      const response = await axios.get(`${URL}/${id}`);
 
       dispatch(setApartment(response.data));
 
@@ -70,7 +69,7 @@ export const deleteApartment = (id) => {
   return async dispatch => {
     try {
       dispatch(setLoading(true));
-      await axios.delete(`${URL}/apartment?id=${id}`);
+      await axios.delete(`${URL}/${id}`);
       dispatch(removeApartment(id));
 
     } catch (e) {
@@ -86,7 +85,7 @@ export const updateApartment = (apartment) => {
   return async dispatch => {
     try {
       dispatch(setLoading(true));
-      const response = await axios.put(`${URL}/apartment?id=${apartment.id}`, {
+      const response = await axios.put(`${URL}/${apartment.id}`, {
         name: apartment.name,
         price: apartment.price,
         rooms: apartment.rooms,
