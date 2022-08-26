@@ -16,7 +16,6 @@ const Apartment = ({ data }) => {
   if (!data) return <div>No apartment found.</div>
 
   if(data.error) return <Error/>
-  console.log(data.description);
   return (
     <div className="apartment">
       <div className="apartment__image">
