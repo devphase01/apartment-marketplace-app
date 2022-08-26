@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setEditingMode } from '../../../app/reducers/apartmentReducer';
 import { Error } from '../../../pages';
+import { formatPrice, formatRooms } from '../../../utils/formatter';
 
 const Apartment = ({ data }) => {
   const dispatch = useDispatch();
@@ -24,8 +25,8 @@ const Apartment = ({ data }) => {
       <div className="apartment__content">
         <div className="apartment-content-block">
           <div className="apartment__title">{data.name}</div>
-          <div className="apartment__price">{data.price} ₴</div>
-          <div className="apartment__rooms"><span>Кімнат:</span> {data.rooms}</div>
+          <div className="apartment__price">{formatPrice(data.price)} грн</div>
+          <div className="apartment__rooms">{formatRooms(data.rooms)}</div>
           <div className="apartment__description">
             <span>Опис: </span> <br />
             <p>{data.description}</p>
