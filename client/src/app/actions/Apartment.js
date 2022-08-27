@@ -2,6 +2,21 @@ import axios from 'axios';
 import { addApartment, removeApartment, setApartments, setTotalApartments, setApartment, setEditingMode } from '../reducers/apartmentReducer';
 import { setLoading } from '../reducers/general';
 
+import { initializeApp } from 'firebase/app';
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCRq1jG0V5fvKewj4HhC4tU0iKtHuE7kNg",
+  authDomain: "fe-upload-70d57.firebaseapp.com",
+  projectId: "fe-upload-70d57",
+  storageBucket: "fe-upload-70d57.appspot.com",
+  messagingSenderId: "496364755747",
+  appId: "1:496364755747:web:e3b0f0220392f1bfd50a96"
+};
+
+const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
+
 const URL = "http://localhost:7000/api/apartments";
 
 export const getApartments = (params) => {
@@ -10,7 +25,7 @@ export const getApartments = (params) => {
       let url = "http://localhost:7000/api/apartments";
       dispatch(setLoading(true));
 
-      if(params?.rooms && params?.price) url += `?rooms=${params.rooms}&price=${params.price}`;
+      if (params?.rooms && params?.price) url += `?rooms=${params.rooms}&price=${params.price}`;
       else if (params?.rooms) url += `?rooms=${params.rooms}`;
       else if (params?.price) url += `?price=${params.price}`;
 
@@ -36,7 +51,7 @@ export const getApartment = (id) => {
       dispatch(setApartment(response.data));
 
     } catch (e) {
-      dispatch(setApartment({ error: "Not found"}));
+      dispatch(setApartment({ error: "Not found" }));
     } finally {
       dispatch(setLoading(false));
     }
@@ -47,16 +62,26 @@ export const createApartment = (apartment) => {
   return async dispatch => {
     try {
       dispatch(setLoading(true));
-      const response = await axios.post(URL, { 
+
+      let iconURL = "";
+      if (apartment.icon) {
+        const storageRef = ref(storage, `images/${apartment.icon.name}`);
+        await uploadBytesResumable(storageRef, apartment.icon);
+
+        iconURL = await getDownloadURL(storageRef);
+      }
+
+      const response = await axios.post(URL, {
         name: apartment.name,
         price: apartment.price,
         rooms: apartment.rooms,
         description: apartment.description,
+        icon: iconURL
       });
 
       dispatch(addApartment(response.data.apartment));
       dispatch(setTotalApartments(response.data.totalApartments));
-      
+
     } catch (e) {
       console.log(e);
     } finally {
@@ -90,10 +115,11 @@ export const updateApartment = (apartment) => {
         price: apartment.price,
         rooms: apartment.rooms,
         description: apartment.description,
+        icon: apartment.icon
       });
 
       dispatch(setApartment(response.data));
-    } catch(e) {
+    } catch (e) {
       console.log(e);
     } finally {
       dispatch(setLoading(false));

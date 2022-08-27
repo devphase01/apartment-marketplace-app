@@ -18,6 +18,7 @@ const ApartmentEdit = ({ data }) => {
     price: data.price,
     rooms: data.rooms,
     description: data.description,
+    icon: data.icon
   });
 
   const handleSubmit = (event) => {
@@ -42,7 +43,6 @@ const ApartmentEdit = ({ data }) => {
 
       errorBlock.classList.add("error");
     } else {
-      console.log(apartment.description);
       dispatch(updateApartment(apartment));
     }
   }

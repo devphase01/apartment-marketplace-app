@@ -5,11 +5,10 @@ import { AiOutlineArrowRight } from 'react-icons/ai';
 import { formatPrice, formatRooms } from '../../../utils/formatter';
 
 const Card = ({ announcement }) => {
-
   return (
     <div className="card">
       <div className="card__image">
-        <img src="https://t-cf.bstatic.com/xdata/images/hotel/square600/214928356.webp?k=897527c745c9c410d77d7ade09d70fbfac836f9339b50f5255b96aac887b310e&o=&s=1" alt="" />
+        <img src={announcement.icon} alt="" />
       </div>
 
       <div className="card__content">

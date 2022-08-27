@@ -9,7 +9,6 @@ import { useDispatch } from 'react-redux';
 import { setEditingMode } from '../../../app/reducers/apartmentReducer';
 import { Error } from '../../../pages';
 import { formatPrice, formatRooms } from '../../../utils/formatter';
-
 const Apartment = ({ data }) => {
   const dispatch = useDispatch();
 
@@ -19,7 +18,7 @@ const Apartment = ({ data }) => {
   return (
     <div className="apartment">
       <div className="apartment__image">
-        <img src="https://t-cf.bstatic.com/xdata/images/hotel/square600/214928356.webp?k=897527c745c9c410d77d7ade09d70fbfac836f9339b50f5255b96aac887b310e&o=&s=1" alt="" />
+        <img src={data.icon} alt="" />
       </div>
 
       <div className="apartment__content">

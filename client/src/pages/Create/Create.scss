@@ -162,6 +162,34 @@
 
       color: #f1f1f1;
     }
+
+    &-input {
+      width: 100%;
+      height: 100%;
+
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 10;
+
+      opacity: 0;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
   }
 
   &__content {
@@ -191,6 +219,8 @@
 
     .create__image {
       min-height: 300px;
+      width: 70%;
+      margin: 0 auto;
     }
   }
 

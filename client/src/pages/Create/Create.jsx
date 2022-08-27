@@ -7,8 +7,7 @@ import { useDispatch } from 'react-redux';
 
 import isValidForm from '../../utils/isValidForm';
 import { createApartment } from '../../app/actions/Apartment';
-import { Link, useNavigate } from 'react-router-dom';
-import { AiOutlineArrowRight } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
 
 const Create = () => {
 
@@ -20,7 +19,10 @@ const Create = () => {
     price: "",
     rooms: "",
     description: "",
+    icon: ""
   });
+
+  const [file, setFile] = useState("");
 
   const handleChange = (event) => {
     setAnnouncement(prev => ({ ...prev, [event.target.name]: event.target.value }));
@@ -43,6 +45,12 @@ const Create = () => {
     }
   }
 
+  const handleUpload = (event) => {
+    const file = event.target.files[0];
+    setFile(URL.createObjectURL(file));
+    setAnnouncement(prev => ({...prev, icon: file }))
+  }
+
   const handleCreate = () => {
     const isValid = isValidForm(announcement);
 
@@ -62,6 +70,7 @@ const Create = () => {
       errorBlock.classList.add("error");
     } else {
       blocks.forEach(block => block.classList.contains("error") ? block.classList.remove("error") : "");
+
       dispatch(createApartment(announcement));
 
       navigate("/");
@@ -79,7 +88,8 @@ const Create = () => {
         </div>
         <div className="create__card">
           <div className="create__image">
-            <BsImageFill className="create__image-icon" />
+            {file ? <img src={file} alt={file} /> : <BsImageFill className="create__image-icon" />}
+            <input type="file" className="create__image-input" onChange={handleUpload} accept=".png,.jpg,.jpeg" />
           </div>
 
           <div className="create__content">
