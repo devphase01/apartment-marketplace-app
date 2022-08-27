@@ -33,14 +33,14 @@ const Create = () => {
 
       descriptionLengthElement.classList.remove("normal");
       descriptionLengthElement.classList.remove("danger");
-      descriptionLengthElement.classList.remove("error");
+      descriptionLengthElement.classList.remove("sizeError");
 
       if (descriptionLength > 0 && descriptionLength < 70) {
         descriptionLengthElement.classList.add("normal");
       } else if (descriptionLength >= 70 && descriptionLength < 100) {
         descriptionLengthElement.classList.add("danger");
       } else if (descriptionLength > 99) {
-        descriptionLengthElement.classList.add("error");
+        descriptionLengthElement.classList.add("sizeError");
       }
     }
   }
@@ -55,7 +55,7 @@ const Create = () => {
     const isValid = isValidForm(announcement);
 
     const blocks = document.querySelectorAll('.create__card-block');
-    blocks.forEach(block => block.classList.contains("error") ? block.classList.remove("error") : "");
+    blocks.forEach(block => block.classList.remove("create__card-block_error"));
 
     if (!isValid.status) {
       const errorTarget = isValid.element;
@@ -67,9 +67,9 @@ const Create = () => {
         errorBlock = document.querySelector(`.create__card-block > textarea[name="${errorTarget}"]`).parentElement;
       }
 
-      errorBlock.classList.add("error");
+      errorBlock.classList.add("create__card-block_error");
     } else {
-      blocks.forEach(block => block.classList.contains("error") ? block.classList.remove("error") : "");
+      blocks.forEach(block => block.classList.remove("create__card-block_error"));
 
       dispatch(createApartment(announcement));
 

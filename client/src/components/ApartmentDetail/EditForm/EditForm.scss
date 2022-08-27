@@ -102,11 +102,10 @@
       height: 200px;
     }
 
-
-    &.error {
+    &_error {
       border-color: #fc8191;
 
-      animation: error linear 500ms;
+      animation: errorAnimation linear 500ms;
     }
   }
 
@@ -123,7 +122,7 @@
       color: $orange-color;
     }
 
-    &.error {
+    &.sizeError {
       color: #fc8191;
     }
   }
@@ -162,7 +161,7 @@
   }
 }
 
-@keyframes error {
+@keyframes errorAnimation {
   0% {
     transform: rotate(0deg);
   }

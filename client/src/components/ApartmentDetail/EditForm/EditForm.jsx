@@ -27,8 +27,8 @@ const ApartmentEdit = ({ data }) => {
 
     const blocks = document.querySelectorAll('.edit__form-block');
 
-    blocks.forEach(block => block.classList.contains("error")
-      ? block.classList.remove("error")
+    blocks.forEach(block => block.classList.contains("edit__form-block_error")
+      ? block.classList.remove("edit__form-block_error")
       : "");
 
     if (!isValid.status) {
@@ -41,7 +41,7 @@ const ApartmentEdit = ({ data }) => {
         errorBlock = document.querySelector(`.edit__form-block > textarea[name="${errorTarget}"]`).parentElement;
       }
 
-      errorBlock.classList.add("error");
+      errorBlock.classList.add("edit__form-block_error");
     } else {
       dispatch(updateApartment(apartment));
     }
@@ -62,14 +62,14 @@ const ApartmentEdit = ({ data }) => {
 
       descriptionLengthElement.classList.remove("normal");
       descriptionLengthElement.classList.remove("danger");
-      descriptionLengthElement.classList.remove("error");
+      descriptionLengthElement.classList.remove("sizeError");
 
       if(descriptionLength > 0 && descriptionLength < 70) {
         descriptionLengthElement.classList.add("normal");
       } else if (descriptionLength >= 70 && descriptionLength < 100) {
         descriptionLengthElement.classList.add("danger");
       } else if (descriptionLength > 99) {
-        descriptionLengthElement.classList.add("error");
+        descriptionLengthElement.classList.add("sizeError");
       }
     }
   }

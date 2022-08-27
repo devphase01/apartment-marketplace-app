@@ -50,6 +50,12 @@
 
       position: relative;
 
+      &_error{
+        border-color: #fc8191;
+
+        animation: errorAnimation linear 500ms;;
+      }
+
       &:nth-child(1) {
         grid-column: 1/4;
       }
@@ -63,12 +69,6 @@
       &:nth-child(4) {
         grid-column: 1/4;
         grid-row: span 2;
-      }
-
-      &.error {
-        border-color: #fc8191;
-
-        animation: error linear 500ms;
       }
 
       label {
@@ -141,7 +141,7 @@
       color: $orange-color;
     }
 
-    &.error {
+    &.sizeError {
       color: #fc8191;
     }
   }
@@ -235,8 +235,7 @@
   }
 }
 
-
-@keyframes error {
+@keyframes errorAnimation {
   0% {
     transform: rotate(0deg);
   }

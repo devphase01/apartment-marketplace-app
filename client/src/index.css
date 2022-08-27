@@ -8,12 +8,20 @@
   font-family: "Montserrat";
 }
 
-input, button, textarea {
+input, button {
   border: none;
   outline: none;
 
   background: unset;
+}
+
+textarea {
   resize: none;
+
+  border: none;
+  outline: none;
+
+  background: unset;
 }
 
 a {
