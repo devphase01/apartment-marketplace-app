@@ -1,12 +1,4 @@
 {
-  "dbURL": "mongodb+srv://Voznyi:devroot@cluster0.vercj49.mongodb.net/?retryWrites=true&w=majority",
-  "serverPORT": 7000,
-  "firebaseConfig": {
-    "apiKey": "AIzaSyCRq1jG0V5fvKewj4HhC4tU0iKtHuE7kNg",
-    "authDomain": "fe-upload-70d57.firebaseapp.com",
-    "projectId": "fe-upload-70d57",
-    "storageBucket": "fe-upload-70d57.appspot.com",
-    "messagingSenderId": "496364755747",
-    "appId": "1:496364755747:web:e3b0f0220392f1bfd50a96"
-  }
+  "dbURL": "mongodb+srv://devphase:devroot@apartments-cluster.u7aazpj.mongodb.net/?retryWrites=true&w=majority",
+  "serverPORT": 7000
 }

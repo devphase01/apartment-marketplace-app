@@ -4,7 +4,7 @@ import { TbFaceIdError } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 
-const Error = () => {
+function Error() {
   return (
     <div className="error">
       <div className="error__container container">
@@ -18,7 +18,7 @@ const Error = () => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default Error;

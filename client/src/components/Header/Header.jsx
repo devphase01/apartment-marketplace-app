@@ -2,8 +2,8 @@ import { useSelector } from 'react-redux';
 import { formatSuggestions } from '../../utils/formatter';
 import './Header.scss';
 
-const Header = () => {
-  const { totalApartments } = useSelector(state => state.apartments);
+function Header() {
+  const { totalApartments } = useSelector((state) => state.apartments);
   return (
     <div className="header">
       <div className="header__container container">
@@ -17,10 +17,9 @@ const Header = () => {
           </span>
         </div>
 
-        
       </div>
     </div>
-  )
+  );
 }
 
-export default Header
+export default Header;

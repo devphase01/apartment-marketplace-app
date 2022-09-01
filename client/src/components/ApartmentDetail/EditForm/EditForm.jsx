@@ -8,7 +8,7 @@ import { deleteApartment, updateApartment } from '../../../app/actions/Apartment
 import { useNavigate } from 'react-router-dom';
 import isValidForm from '../../../utils/isValidForm';
 
-const ApartmentEdit = ({ data }) => {
+function ApartmentEdit({ data }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ const ApartmentEdit = ({ data }) => {
     price: data.price,
     rooms: data.rooms,
     description: data.description,
-    icon: data.icon
+    icon: data.icon,
   });
 
   const handleSubmit = (event) => {
@@ -27,52 +27,54 @@ const ApartmentEdit = ({ data }) => {
 
     const blocks = document.querySelectorAll('.edit__form-block');
 
-    blocks.forEach(block => block.classList.contains("edit__form-block_error")
-      ? block.classList.remove("edit__form-block_error")
-      : "");
+    blocks.forEach((block) => (block.classList.contains('edit__form-block_error')
+      ? block.classList.remove('edit__form-block_error')
+      : ''));
 
     if (!isValid.status) {
       const errorTarget = isValid.element;
       let errorBlock;
 
-      if(errorTarget !== "description") {
-       errorBlock = document.querySelector(`.edit__form-block > input[name="${errorTarget}"]`).parentElement;
+      if (errorTarget !== 'description') {
+        const inputElem = `.edit__form-block > input[name='${errorTarget}']`;
+        errorBlock = document.querySelector(inputElem).parentElement;
       } else {
-        errorBlock = document.querySelector(`.edit__form-block > textarea[name="${errorTarget}"]`).parentElement;
+        const textAreaElem = `.edit__form-block > textarea[name='${errorTarget}']`;
+        errorBlock = document.querySelector(textAreaElem).parentElement;
       }
 
-      errorBlock.classList.add("edit__form-block_error");
+      errorBlock.classList.add('edit__form-block_error');
     } else {
       dispatch(updateApartment(apartment));
     }
-  }
+  };
 
   const handleDelete = (event) => {
     event.preventDefault();
     dispatch(deleteApartment(data._id));
-    navigate("/");
-  }
+    navigate('/');
+  };
 
   const handleChange = (event) => {
-    setApartment(prev => ({ ...prev, [event.target.name]: event.target.value }));
+    setApartment((prev) => ({ ...prev, [event.target.name]: event.target.value }));
 
-    if(event.target.name === "description") {
-      let descriptionLength = event.target.value.length;
-      const descriptionLengthElement = document.querySelector(".edit__description-length");
+    if (event.target.name === 'description') {
+      const descriptionLength = event.target.value.length;
+      const descriptionLengthElement = document.querySelector('.edit__description-length');
 
-      descriptionLengthElement.classList.remove("normal");
-      descriptionLengthElement.classList.remove("danger");
-      descriptionLengthElement.classList.remove("sizeError");
+      descriptionLengthElement.classList.remove('normal');
+      descriptionLengthElement.classList.remove('danger');
+      descriptionLengthElement.classList.remove('sizeError');
 
-      if(descriptionLength > 0 && descriptionLength < 70) {
-        descriptionLengthElement.classList.add("normal");
+      if (descriptionLength > 0 && descriptionLength < 70) {
+        descriptionLengthElement.classList.add('normal');
       } else if (descriptionLength >= 70 && descriptionLength < 100) {
-        descriptionLengthElement.classList.add("danger");
+        descriptionLengthElement.classList.add('danger');
       } else if (descriptionLength > 99) {
-        descriptionLengthElement.classList.add("sizeError");
+        descriptionLengthElement.classList.add('sizeError');
       }
     }
-  }
+  };
 
   return (
     <div className="edit">
@@ -123,7 +125,8 @@ const ApartmentEdit = ({ data }) => {
                 onChange={handleChange}
               />
               <span className="edit__description-length">
-                {apartment.description.length}/99
+                {apartment.description.length}
+                /99
               </span>
             </div>
           </div>
@@ -134,7 +137,9 @@ const ApartmentEdit = ({ data }) => {
             </button>
 
             <div className="edit__buttons">
-              <button className="edit__cancel" onClick={() => dispatch(setEditingMode(false))}><span>Скасувати</span></button>
+              <button className="edit__cancel" onClick={() => dispatch(setEditingMode(false))}>
+                <span>Скасувати</span>
+              </button>
               <button type="submit" className="edit__submit"><span>Зберегти</span></button>
             </div>
           </div>
@@ -142,7 +147,7 @@ const ApartmentEdit = ({ data }) => {
 
       </div>
     </div>
-  )
+  );
 }
 
-export default ApartmentEdit
+export default ApartmentEdit;

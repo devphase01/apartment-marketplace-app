@@ -5,77 +5,78 @@ import { BsImageFill } from 'react-icons/bs';
 
 import { useDispatch } from 'react-redux';
 
+import { useNavigate } from 'react-router-dom';
 import isValidForm from '../../utils/isValidForm';
 import { createApartment } from '../../app/actions/Apartment';
-import { useNavigate } from 'react-router-dom';
 
-const Create = () => {
-
+function Create() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [announcement, setAnnouncement] = useState({
-    name: "",
-    price: "",
-    rooms: "",
-    description: "",
-    icon: ""
+    name: '',
+    price: '',
+    rooms: '',
+    description: '',
+    icon: '',
   });
 
-  const [file, setFile] = useState("");
+  const [file, setFile] = useState('');
 
   const handleChange = (event) => {
-    setAnnouncement(prev => ({ ...prev, [event.target.name]: event.target.value }));
+    setAnnouncement((prev) => ({ ...prev, [event.target.name]: event.target.value }));
 
-    if (event.target.name === "description") {
-      let descriptionLength = event.target.value.length;
-      const descriptionLengthElement = document.querySelector(".create__description-length");
+    if (event.target.name === 'description') {
+      const descriptionLength = event.target.value.length;
+      const descriptionLengthElement = document.querySelector('.create__description-length');
 
-      descriptionLengthElement.classList.remove("normal");
-      descriptionLengthElement.classList.remove("danger");
-      descriptionLengthElement.classList.remove("sizeError");
+      descriptionLengthElement.classList.remove('normal');
+      descriptionLengthElement.classList.remove('danger');
+      descriptionLengthElement.classList.remove('sizeError');
 
       if (descriptionLength > 0 && descriptionLength < 70) {
-        descriptionLengthElement.classList.add("normal");
+        descriptionLengthElement.classList.add('normal');
       } else if (descriptionLength >= 70 && descriptionLength < 100) {
-        descriptionLengthElement.classList.add("danger");
+        descriptionLengthElement.classList.add('danger');
       } else if (descriptionLength > 99) {
-        descriptionLengthElement.classList.add("sizeError");
+        descriptionLengthElement.classList.add('sizeError');
       }
     }
-  }
+  };
 
   const handleUpload = (event) => {
     const file = event.target.files[0];
     setFile(URL.createObjectURL(file));
-    setAnnouncement(prev => ({...prev, icon: file }))
-  }
+    setAnnouncement((prev) => ({ ...prev, icon: file }));
+  };
 
   const handleCreate = () => {
     const isValid = isValidForm(announcement);
 
     const blocks = document.querySelectorAll('.create__card-block');
-    blocks.forEach(block => block.classList.remove("create__card-block_error"));
+    blocks.forEach((block) => block.classList.remove('create__card-block_error'));
 
     if (!isValid.status) {
       const errorTarget = isValid.element;
       let errorBlock;
 
-      if (errorTarget !== "description") {
-        errorBlock = document.querySelector(`.create__card-block > input[name="${errorTarget}"]`).parentElement;
+      if (errorTarget !== 'description') {
+        const inputElem = `.create__card-block > input[name='${errorTarget}']`;
+        errorBlock = document.querySelector(inputElem).parentElement;
       } else {
-        errorBlock = document.querySelector(`.create__card-block > textarea[name="${errorTarget}"]`).parentElement;
+        const textareaElem = `.create__card-block > textarea[name='${errorTarget}']`;
+        errorBlock = document.querySelector(textareaElem).parentElement;
       }
 
-      errorBlock.classList.add("create__card-block_error");
+      errorBlock.classList.add('create__card-block_error');
     } else {
-      blocks.forEach(block => block.classList.remove("create__card-block_error"));
+      blocks.forEach((block) => block.classList.remove('create__card-block_error'));
 
       dispatch(createApartment(announcement));
 
-      navigate("/");
+      navigate('/');
     }
-  }
+  };
 
   return (
     <div className="create">
@@ -89,12 +90,17 @@ const Create = () => {
         <div className="create__card">
           <div className="create__image">
             {file ? <img src={file} alt={file} /> : <BsImageFill className="create__image-icon" />}
-            <input type="file" className="create__image-input" onChange={handleUpload} accept=".png,.jpg,.jpeg" />
+            <input
+              className="create__image-input"
+              type="file"
+              onChange={handleUpload}
+              accept=".png,.jpg,.jpeg"
+            />
           </div>
 
           <div className="create__content">
 
-            <form className="create__card-form" autoComplete='off'>
+            <form className="create__card-form" autoComplete="off">
               <div className="create__card-block">
                 <label htmlFor="create__title-input">Заголовок*</label>
                 <input
@@ -133,7 +139,10 @@ const Create = () => {
                   onChange={handleChange}
                   name="description"
                 />
-                <span className="create__description-length">{announcement.description.length}/99</span>
+                <span className="create__description-length">
+                  {announcement.description.length}
+                  /99
+                </span>
               </div>
 
             </form>
@@ -146,7 +155,7 @@ const Create = () => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Create
+export default Create;

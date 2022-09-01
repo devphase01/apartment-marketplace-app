@@ -4,7 +4,9 @@
   "description": "Marketplace Apartment API",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "lint": "eslint -c .eslintrc.js --ext .js .",
+    "lint:fix": "npm run lint -- --fix"
   },
   "author": "Voznyi",
   "license": "ISC",
@@ -17,6 +19,8 @@
     "mongoose": "^6.5.2"
   },
   "devDependencies": {
+    "eslint": "^8.23.0",
+    "eslint-config-google": "^0.14.0",
     "nodemon": "^2.0.19"
   }
 }

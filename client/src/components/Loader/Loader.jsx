@@ -1,9 +1,12 @@
 import './Loader.scss';
 
-const Loader = () => {
+function Loader() {
   return (
-    <div className="lds-ripple"><div></div><div></div></div>
-  )
+    <div className="lds-ripple">
+      <div />
+      <div />
+    </div>
+  );
 }
 
-export default Loader
+export default Loader;

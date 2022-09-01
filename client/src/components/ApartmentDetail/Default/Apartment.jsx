@@ -1,4 +1,4 @@
-import './Apartment.scss'
+import './Apartment.scss';
 
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import { FaRegEdit } from 'react-icons/fa';
@@ -9,12 +9,13 @@ import { useDispatch } from 'react-redux';
 import { setEditingMode } from '../../../app/reducers/apartmentReducer';
 import { Error } from '../../../pages';
 import { formatPrice, formatRooms } from '../../../utils/formatter';
-const Apartment = ({ data }) => {
+
+function Apartment({ data }) {
   const dispatch = useDispatch();
 
-  if (!data) return <div>No apartment found.</div>
+  if (!data) return <div>No apartment found.</div>;
 
-  if(data.error) return <Error/>
+  if (data.error) return <Error />;
   return (
     <div className="apartment">
       <div className="apartment__image">
@@ -24,10 +25,16 @@ const Apartment = ({ data }) => {
       <div className="apartment__content">
         <div className="apartment-content-block">
           <div className="apartment__title">{data.name}</div>
-          <div className="apartment__price">{formatPrice(data.price)} грн</div>
+          <div className="apartment__price">
+            {formatPrice(data.price)}
+            {' '}
+            грн
+          </div>
           <div className="apartment__rooms">{formatRooms(data.rooms)}</div>
           <div className="apartment__description multiline">
-            <span>Опис: </span> <br />
+            <span>Опис: </span>
+            {' '}
+            <br />
             <p>{`${data.description}`}</p>
           </div>
         </div>
@@ -42,7 +49,7 @@ const Apartment = ({ data }) => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default Apartment;

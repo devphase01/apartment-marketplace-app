@@ -1,15 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  activeSection: null
-}
+  activeSection: null,
+};
 
 const sectionObserverSlice = createSlice({
-  name: "sectionObserver",
+  name: 'sectionObserver',
   initialState,
   reducers: {
-    setSection(state, action) { state.activeSection = action.payload }
-  }
+    setSection(state, action) { state.activeSection = action.payload; },
+  },
 });
 
 export default sectionObserverSlice.reducer;

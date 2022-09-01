@@ -5,10 +5,10 @@ const initialState = {
   apartment: null,
   totalApartments: 0,
   isEditing: false,
-}
+};
 
 const apartmentSlice = createSlice({
-  name: "apartmentSlice",
+  name: 'apartmentSlice',
   initialState,
   reducers: {
     setApartments(state, action) {
@@ -29,13 +29,13 @@ const apartmentSlice = createSlice({
     },
 
     removeApartment(state, action) {
-      state.apartments = [...state.apartments.filter(apartment => apartment._id !== action.payload)];
-      state.totalAnnouncement -= 1; 
+      state.apartments = [...state.apartments.filter((apartment) => apartment._id !== action.payload)];
+      state.totalAnnouncement -= 1;
     },
 
     setEditingMode(state, action) {
       state.isEditing = action.payload;
-    }
+    },
 
   },
 });
@@ -43,9 +43,9 @@ const apartmentSlice = createSlice({
 export default apartmentSlice.reducer;
 export const {
   setApartments,
-  setApartment, 
+  setApartment,
   setTotalApartments,
   setEditingMode,
-  addApartment, 
+  addApartment,
   removeApartment,
 } = apartmentSlice.actions;

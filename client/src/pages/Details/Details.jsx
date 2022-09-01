@@ -1,23 +1,23 @@
 import './Details.scss';
-import { useEffect } from 'react'
+
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getApartment } from '../../app/actions/Apartment';
 import { Apartment, EditForm, Loader } from '../../components';
 
-const Details = () => {
+function Details() {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  const { isLoading } = useSelector(state => state.general);
-  const { apartment, isEditing } = useSelector(state => state.apartments);
+  const { isLoading } = useSelector((state) => state.general);
+  const { apartment, isEditing } = useSelector((state) => state.apartments);
 
   useEffect(() => {
     dispatch(getApartment(id));
   }, [dispatch, id]);
 
-
-  if(isLoading) return <div className="loader"><Loader /></div>
+  if (isLoading) return <div className="loader"><Loader /></div>;
 
   return (
     <div className="details">
@@ -25,9 +25,9 @@ const Details = () => {
         {apartment && !isLoading && <Apartment data={apartment} />}
       </div>
 
-      {isEditing && <EditForm data={apartment}/>}
+      {isEditing && <EditForm data={apartment} />}
     </div>
-  )
+  );
 }
 
-export default Details
+export default Details;

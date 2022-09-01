@@ -8,49 +8,55 @@ import { setSection } from '../../../app/reducers/sectionObserver';
 import { getApartments } from '../../../app/actions/Apartment';
 import { setPriceSort, setPriceText } from '../../../app/reducers/general';
 
-const currentSection = "sortByPrice";
+const currentSection = 'sortByPrice';
 
-const SortPrice = () => {
+function SortPrice() {
   const dispatch = useDispatch();
-  const { activeSection } = useSelector(state => state.sectionObserver);
-  const { roomsFilter, priceText } = useSelector(state => state.general);
-  
+  const { activeSection } = useSelector((state) => state.sectionObserver);
+  const { roomsFilter, priceText } = useSelector((state) => state.general);
+
   const [isSelect, setIsSelect] = useState(false);
 
   const handleSelect = (event, element) => {
     event.stopPropagation();
 
-    const type = element.dataset.type;
+    const { type } = element.dataset;
     const text = element.textContent;
 
     setIsSelect(false);
-    document.querySelector(".sort-price__icon").classList.remove("active");
-    
+    document.querySelector('.sort-price__icon').classList.remove('active');
+
     // ACTION TO SERVER
     dispatch(getApartments({ price: type, rooms: roomsFilter }));
     dispatch(setPriceSort(type));
     dispatch(setPriceText(text));
-  }
+  };
 
   useEffect(() => {
-    if(activeSection !== currentSection) {
+    if (activeSection !== currentSection) {
       setIsSelect(false);
-      document.querySelector(".sort-price__icon").classList.remove("active");
+      document.querySelector('.sort-price__icon').classList.remove('active');
     }
   }, [activeSection]);
 
   return (
     <div className="sort-price">
 
-      <div className="sort-price__text" onClick={(e) => {
-        e.stopPropagation();
-        setIsSelect(prev => !prev);
-        dispatch(setSection(currentSection));
+      <div
+        className="sort-price__text"
+        onClick={(e) => {
+          e.stopPropagation();
+          setIsSelect((prev) => !prev);
+          dispatch(setSection(currentSection));
 
-        document.querySelector(".sort-price__icon").classList.toggle("active");
-      }}>
-        <span>Сортування цін: <span>{priceText}</span></span>
-        <MdOutlineKeyboardArrowDown className="sort-price__icon"/>
+          document.querySelector('.sort-price__icon').classList.toggle('active');
+        }}
+      >
+        <span>
+          Сортування цін:
+          <span>{priceText}</span>
+        </span>
+        <MdOutlineKeyboardArrowDown className="sort-price__icon" />
       </div>
 
       {isSelect && activeSection === currentSection && (
@@ -62,7 +68,7 @@ const SortPrice = () => {
       )}
 
     </div>
-  )
+  );
 }
 
-export default SortPrice
+export default SortPrice;
